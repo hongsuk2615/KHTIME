@@ -447,6 +447,7 @@
                             success : function(result){ 
                                 console.log(result);
                                 let reqUser = result[(Object.keys(result)[0])];
+                                console.log('유저: ' + reqUser);
                                 document.getElementById("modal-body").innerHTML = 
                                 `<div class="modal-body-wrapper">
                                     <div class="modal-body-left">요청한 아이디</div>
@@ -477,10 +478,17 @@
                             error : function(){
                             console.log("ajax통신 실패");
                             }				
-                        });         
+                        });     
+                        document.getElementById("ban-deny-btn").innerHTML = "승인";
+                        document.getElementById("ban-deny-btn").addEventListener('click',function(){
+                            location.href="<%=request.getContextPath()%>/approveMakeBoard.do?cName="+categoryName+"&approve=Y";
+                        });
+                        document.getElementById("unban-approve-btn").innerHTML = "거부";
+                        document.getElementById("unban-approve-btn").addEventListener('click',function(){
+                            location.href="<%=request.getContextPath()%>/approveMakeBoard.do?cName="+categoryName+"&approve=N";
+                        });    
                     }
-                    document.getElementById("ban-deny-btn").innerHTML = "승인";
-                    document.getElementById("unban-approve-btn").innerHTML = "거부";
+                    
                 }
             });
 
